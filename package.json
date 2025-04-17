@@ -1,0 +1,28 @@
+{
+  "name": "cat-image-mcp",
+  "version": "1.0.0",
+  "description": "猫の画像を返却するmcpサーバ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gakuto18/cat-image-mcp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gakuto18/cat-image-mcp/issues"
+  },
+  "homepage": "https://github.com/Gakuto18/cat-image-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3"
+  }
+}
