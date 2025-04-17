@@ -23,6 +23,7 @@ class MCPClient {
             version: "0.1.0",
         });
     }
+    // サーバーとの接続
     async connectToServer(serverScriptPath) {
         try {
             this.transport = new StdioClientTransport({
@@ -49,6 +50,7 @@ class MCPClient {
                 content: query,
             },
         ];
+        // LLMにツールと一緒にメッセージを送る
         const response = await this.anthoripic.messages.create({
             model: "claude-3-5-sonnet-20240620",
             max_tokens: 1000,
@@ -64,13 +66,13 @@ class MCPClient {
             else if (content.type === "tool_use") {
                 // ツールを実行
                 const toolName = content.name;
-                const toolArgs = content.input;
-                console.log("【ツールの実行】", toolName, toolArgs);
                 const result = (await this.mcp.callTool({
                     name: toolName,
-                    arguments: toolArgs,
+                    arguments: {},
                 }));
+                console.log("result: ", result);
                 if (result.content) {
+                    // 画像データを表示
                     const imageData = result.content[0].data;
                     const buffer = Buffer.from(imageData, "base64");
                     console.log(await terminalImage.buffer(buffer));
@@ -91,6 +93,7 @@ class MCPClient {
                 if (query.toLowerCase() === "quit") {
                     break;
                 }
+                console.log("query: ", query);
                 const response = await this.processQuery(query);
                 console.log("MCP: ", response);
             }
